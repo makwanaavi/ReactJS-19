@@ -1,8 +1,8 @@
 import './components/EV.css'
-import Derived from "./components/Derived";
+import LiftStateUp from './components/hooks/LiftStateUp';
 
 export const App = () => {
   return (
-    <Derived/>
+    <LiftStateUp/>
   );
 };
