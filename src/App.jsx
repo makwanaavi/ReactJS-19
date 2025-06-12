@@ -1,9 +1,9 @@
 import './components/EV.css'
-import { Toggle } from './project/Toggle';
+import Todo from './project/Todo/Todo';
 
 export const App = () => {
   
   return (
-    <Toggle/>
+    <Todo/>
   );
 };
