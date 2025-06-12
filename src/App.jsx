@@ -1,8 +1,9 @@
 import './components/EV.css'
-import LiftStateUp from './components/hooks/LiftStateUp';
+import Todo from './project/Todo/Todo';
 
 export const App = () => {
+  
   return (
-    <LiftStateUp/>
+    <Todo/>
   );
 };
