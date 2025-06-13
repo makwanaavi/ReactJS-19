@@ -1,9 +1,6 @@
-import './components/EV.css'
-import { Controlled } from './components/hooks/UseState/Controlled';
+import "./components/EV.css";
+import { Registration } from "./components/hooks/UseState/Registration";
 
 export const App = () => {
-  
-  return (
-    <Controlled/>
-  );
+  return <Registration/>;
 };
