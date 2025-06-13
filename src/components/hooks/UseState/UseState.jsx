@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function UseState() {
   const [Count, setCount] = useState(0);
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState("");
 
   const handleIncrement = () => {
     setCount(Count + step);
@@ -15,6 +15,7 @@ function UseState() {
   const handleReset = () => {
     setCount(0);
   };
+
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className=" rounded-2xl p-8 shadow-xl w-full max-w-md">
@@ -43,6 +44,7 @@ function UseState() {
             onClick={handleIncrement}
             className="px-4 py-2 rounded-xl bg-pink-400 
             text-white font-semibold text-lg"
+            disabled={Count >= 100}
           >
             Increment +
           </button>
@@ -50,6 +52,7 @@ function UseState() {
           <button
             onClick={handleDecrement}
             className="px-4 py-2 rounded-xl bg-pink-400  text-white font-semibold text-lg"
+            disabled={Count <= 0}
           >
             Decrement -
           </button>

@@ -1,9 +1,9 @@
 import './components/EV.css'
-import UseState from './components/hooks/UseState/UseState';
+import { Controlled } from './components/hooks/UseState/Controlled';
 
 export const App = () => {
   
   return (
-    <UseState/>
+    <Controlled/>
   );
 };
