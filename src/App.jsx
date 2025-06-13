@@ -1,9 +1,9 @@
 import './components/EV.css'
-import { ShortCirCuit } from './components/hooks/ShortCircuit';
+import { Controlled } from './components/hooks/UseState/Controlled';
 
 export const App = () => {
   
   return (
-    <ShortCirCuit/>
+    <Controlled/>
   );
 };
