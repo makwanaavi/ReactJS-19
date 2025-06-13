@@ -1,16 +1,16 @@
 import { useState } from "react";
 
 function TodoForm({ onAddTodo }) {
-  const [InputValue, setInputValue] = useState("");
+  const [InputValue, setInputValue] = useState({});
 
-  const handleInput = (e) => {
-    setInputValue(e.target.value);
+  const handleInput = (value) => {
+    setInputValue({ id: value, content: value, checked: false });
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     onAddTodo(InputValue);
-    setInputValue("");
+    setInputValue({ id: "", content: "", checked: false });
   };
 
   return (
@@ -21,8 +21,8 @@ function TodoForm({ onAddTodo }) {
           className="todo-input"
           placeholder="Add a new task..."
           autoComplete="off"
-          value={InputValue}
-          onChange={handleInput}
+          value={InputValue.content}
+          onChange={(event) => handleInput(event.target.value)}
         />
         <button type="submit" className="todo-btn">
           Add Task

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import "./Todo.css";
 import TodoForm from "./TodoForm";
@@ -9,19 +9,22 @@ function Todo() {
   const [task, setTask] = useState([]);
 
   const handleFormSubmit = (InputValue) => {
-    if (!InputValue) return;
+    const { id, content, checked } = InputValue;
 
-    if (task.includes(InputValue)) return;
+    if (!content) return;
 
-    setTask((prevTask) => [...prevTask, InputValue]);
+    // if (task.includes(InputValue)) return;
+
+    const ifTodoContentMatch = task.find(
+      (curTask) => curTask.content === content
+    );
+    if (ifTodoContentMatch) return;
+
+    setTask((prevTask) => [...prevTask, { id, content, checked }]);
   };
 
- 
-
   const handleDeleteTodo = (value) => {
-    console.log(task);
-    console.log(value);
-    const updatedTask = task.filter((curTask) => curTask !== value);
+    const updatedTask = task.filter((curTask) => curTask.content === value);
     setTask(updatedTask);
   };
 
@@ -29,21 +32,40 @@ function Todo() {
     setTask([]);
   };
 
+  const handleCheckTodo = (content) =>{
+    const updatedTask = task.map((curTask) =>{
+      if (curTask.content === content ) {
+        return {...curTask, checked: !curTask.checked}
+      }else{
+        return curTask ;
+      }
+    }) ; 
+    setTask(updatedTask)
+   } 
+
   return (
     <section className="todo-container">
       <header className="header">
         <h1>Todo List</h1>
       </header>
 
-    <TodoData/>
+      <TodoData />
 
       <TodoForm onAddTodo={handleFormSubmit} />
 
       <section className="myUnOrdList">
-        <ul className="todo-list">
-          {task.map((curTask, index) => (
-           <TodoList key={index} data={curTask} onhandleDeleteTodo={handleDeleteTodo}/>
-          ))}
+        <ul>
+          {task.map((curTask) => {
+            return (
+              <TodoList
+                key={curTask.id}
+                data={curTask.content}
+                checked = {curTask.checked}
+                onhandleDeleteTodo={handleDeleteTodo}
+                onhandleCheckTodo={handleCheckTodo}
+              />
+            );
+          })}
         </ul>
       </section>
 
