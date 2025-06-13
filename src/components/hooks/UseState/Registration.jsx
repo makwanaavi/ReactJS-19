@@ -1,50 +1,65 @@
-import "./index.css";
-import { useState } from "react";
+//* Registration Form Using Multiple State Variables
 
-export const Registration = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+//todo  Tasks:
+
+//? Set up a functional component in React.
+//? Create five separate state variables (firstName, lastName, email, password, phoneNumber).
+//? Create input fields for each piece of information.
+//? Implement onChange handlers to update state variables.
+//? Discuss the benefits and drawbacks of this approach.
+
+import "./index.css";
+import { useState, useEffect } from "react";
+
+export const RegistrationForm = () => {
+  // Initialize state with data from localStorage if it exists
+  const [formData, setFormData] = useState(() => {
+    const savedData = localStorage.getItem("registrationData");
+    return savedData
+      ? JSON.parse(savedData)
+      : {
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          phoneNumber: "",
+        };
+  });
+
+  const { firstName, lastName, email, password, phoneNumber } = formData;
+
+  // Save to localStorage whenever form data changes
+  useEffect(() => {
+    localStorage.setItem("registrationData", JSON.stringify(formData));
+  }, [formData]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    switch (name) {
-      case "firstName":
-        setFirstName(value);
-        break;
-
-      case "lastName":
-        setLastName(value);
-        break;
-
-      case "email":
-        setEmail(value);
-        break;
-
-      case "password":
-        setPassword(value);
-        break;
-
-      case "phone":
-        setPhoneNumber(value);
-        break;
+    // Phone number validation
+    if (name === "phone") {
+      // Only allow numbers and limit to 10 digits
+      const numericValue = value.replace(/\D/g, "").slice(0, 10);
+      setFormData((prevData) => ({
+        ...prevData,
+        phoneNumber: numericValue,
+      }));
+      return;
     }
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    const formData = {
-      firstName,
-      lastName,
-      email,
-      password,
-      phoneNumber,
-    };
-
-    console.log(formData);
+    console.log("Form submitted:", formData);
+    // Optional: Clear form after submission
+    // setFormData({
+    //   firstName: "", lastName: "", email: "", password: "", phoneNumber: ""
+    // });
   };
 
   return (
@@ -102,18 +117,28 @@ export const Registration = () => {
             onChange={handleInputChange}
           />
 
-          <label htmlFor="phone">
+          <label htmlFor="phonenumber">
             <b>Phone Number</b>
           </label>
-
-          <input
+           <input
             type="phone"
-            name="phone"
-            placeholder="9876543211"
+             placeholder="Enter 10 digit number"
+            maxLength="10"
+            pattern="[0-9]{10}"
             required
             value={phoneNumber}
             onChange={handleInputChange}
           />
+          {/* <input
+            type="tel"
+            name="phone"
+            placeholder="Enter 10 digit number"
+            maxLength="10"
+            pattern="[0-9]{10}"
+            required
+            value={phoneNumber}
+            onChange={handleInputChange}
+          /> */}
 
           <p>
             By creating an account you agree to our
@@ -123,7 +148,7 @@ export const Registration = () => {
           </p>
 
           <div className="clearfix">
-            <button type="submit" className="btn">
+            <button type="submit" className="button">
               Sign Up
             </button>
           </div>
@@ -146,114 +171,3 @@ export const Registration = () => {
     </>
   );
 };
-
-// import { useState } from 'react';
-
-// function Registration() {
-//   const [formData, setFormData] = useState({
-//     username: '',
-//     email: '',
-//     password: '',
-//     confirmPassword: ''
-//   });
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     console.log(formData);
-//   };
-
-//   const handleChange = (e) => {
-//     setFormData({
-//       ...formData,
-//       [e.target.name]: e.target.value
-//     });
-//   };
-
-//   return (
-//     <div className="min-h-screen flex items-center justify-center p-4">
-//       <div className="bg-white w-full max-w-md rounded-2xl shadow-xl p-8">
-//         <h2 className="text-3xl font-bold text-center text-blue-600 mb-8">
-//           Registration
-//         </h2>
-
-//         <form onSubmit={handleSubmit} className="space-y-6">
-//           <div>
-//             <label className="block text-sm font-medium text-gray-700 mb-2">
-//               Username
-//             </label>
-//             <input
-//               type="text"
-//               name="username"
-//               value={formData.username}
-//               onChange={handleChange}
-//               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-//               placeholder="Enter your username"
-//               required
-//             />
-//           </div>
-
-//           <div>
-//             <label className="block text-sm font-medium text-gray-700 mb-2">
-//               Email
-//             </label>
-//             <input
-//               type="email"
-//               name="email"
-//               value={formData.email}
-//               onChange={handleChange}
-//               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-//               placeholder="Enter your email"
-//               required
-//             />
-//           </div>
-
-//           <div>
-//             <label className="block text-sm font-medium text-gray-700 mb-2">
-//               Password
-//             </label>
-//             <input
-//               type="password"
-//               name="password"
-//               value={formData.password}
-//               onChange={handleChange}
-//               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-//               placeholder="Enter your password"
-//               required
-//             />
-//           </div>
-
-//           <div>
-//             <label className="block text-sm font-medium text-gray-700 mb-2">
-//               Confirm Password
-//             </label>
-//             <input
-//               type="password"
-//               name="confirmPassword"
-//               value={formData.confirmPassword}
-//               onChange={handleChange}
-//               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-//               placeholder="Confirm your password"
-//               required
-//             />
-//           </div>
-
-//           <button
-//             type="submit"
-//             className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200"
-//           >
-//             Register
-//           </button>
-//         </form>
-
-//         <p className="mt-6 text-center text-gray-600">
-//           Already have an account?{' '}
-//           <a href="#" className="text-blue-600 hover:underline">
-//             Login here
-//           </a>
-//         </p>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Registration;

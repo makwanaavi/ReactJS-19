@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -9,9 +11,10 @@ html {
   font-size: 62.5%;
 }
 
-body {
-  width: 100%;
-  background-color: #eff3ff;
+:root {
+  --primary-color: #1c2833;
+  --secondary-color: #fff;
+  --bg-color: #f2f3f4;
 }
 
 h1,
@@ -24,123 +27,103 @@ h6 {
 }
 
 h1 {
-  font-size: 5.4rem;
+  font-size: 4.2rem;
   font-weight: bold;
-  /* color: #000 !important; */
-  text-align: center;
+  margin-bottom: 1.6rem;
 }
-
-p,
-span {
-  font-size: 1.6rem;
-}
-
-li {
-  list-style: none;
-}
-
-span {
-  font-weight: bold;
-}
-
-.container {
-  max-width: 152rem;
-  margin: auto;
-}
-
-.grid-three-cols {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.6rem;
-  text-align: center;
-  margin: 3.2rem 0;
-  align-items: end;
-}
-
-header {
-  margin: 3.2rem 0;
-}
-
-input[type="text"] {
-  appearance: none;
-  border: none;
-  outline: none;
-  width: 32rem;
-  border-bottom: 0.2em solid #020d35;
-  background: rgba(#e91e63, 0.2);
-  border-radius: 0.2em 0.2em 0 0;
-  padding: 0.8em;
-  font-size: 1.6rem;
-  color: #000000;
-  -webkit-border-radius: 0.2em 0.2em 0 0;
-  -moz-border-radius: 0.2em 0.2em 0 0;
-  -ms-border-radius: 0.2em 0.2em 0 0;
-  -o-border-radius: 0.2em 0.2em 0 0;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  justify-content: center;
-  align-items: center;
-  gap: 3.2rem;
-}
-
-/* ///////////////////////////////////////// */
-.effect-container {
-  width: 65rem;
-  padding: 0 6.4rem;
-
-  & h1 {
-    margin-bottom: 3.2rem;
-  }
-
-  & p {
-    margin-bottom: 1.6rem;
-  }
-
-  & span {
-    font-weight: bold;
-  }
-
-  & button {
-    padding: 0.6rem 1.6rem;
-    font-size: 1.6rem;
-    cursor: pointer;
-    margin-bottom: 3.2rem;
-    background-color: #2ecc71;
-    border: none;
-    color: #fff;
-    border-radius: 0.2rem;
-    -webkit-border-radius: 0.2rem;
-    -moz-border-radius: 0.2rem;
-    -ms-border-radius: 0.2rem;
-    -o-border-radius: 0.2rem;
-  }
-}
-
-/* @import url("https://fonts.googleapis.com/css?family=Lato"); */
 
 body {
-  background: #00182f;
-  color: white;
-  font-family: "Lato", sans-serif;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  background-color: #f7f7f7;
+}
+* {
+  box-sizing: border-box;
 }
 
+/* Add padding to container elements */
 .container {
+  padding: 20px;
+  width: 500px;
   position: absolute;
-  text-align: center;
-  width: 100%;
-  top: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: white;
+  -webkit-box-shadow: 2px 1px 21px -9px rgba(0, 0, 0, 0.38);
+  -moz-box-shadow: 2px 1px 21px -9px rgba(0, 0, 0, 0.38);
+  box-shadow: 2px 1px 21px -9px rgba(0, 0, 0, 0.38);
 }
 
-.odometer {
-  font-size: calc(2rem + 5vw);
+/* Full-width input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f7f7f7;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
 }
 
-.title {
-  letter-spacing: 1.5px;
-  line-height: 1.25;
+input[type="phone"] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f7f7f7;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="phone"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #0eb7f4;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  font-size: 16px;
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
+  border-radius: 10px;
+}
+
+button:hover {
+  opacity: 1;
+}
+
+span {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin: 0 0.6rem;
+  color: #0eb7f4;
+}
+label,
+p {
+  font-size: 1.6rem;
+}
+p {
+  margin-bottom: 3.2rem;
+  font-size: 1.8rem;
+}
+
+/* Change styles for signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .signupbtn {
+    width: 100%;
+  }
 }
