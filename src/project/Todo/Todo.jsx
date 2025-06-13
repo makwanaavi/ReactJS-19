@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./Todo.css";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import TodoData from "./TodoData";
+import {
+  getLocalStorageTodoData,
+  setLocalStorageTodoData,
+} from "./TodoLocalStorage";
 
 function Todo() {
-  const [task, setTask] = useState([]);
+  const [task, setTask] = useState(() => getLocalStorageTodoData());
+
+  // Add useEffect for localStorage updates
+  useEffect(() => {
+    setLocalStorageTodoData(task);
+  }, [task]);
 
   const handleFormSubmit = (InputValue) => {
     const { id, content, checked } = InputValue;
@@ -24,7 +33,7 @@ function Todo() {
   };
 
   const handleDeleteTodo = (value) => {
-    const updatedTask = task.filter((curTask) => curTask.content === value);
+    const updatedTask = task.filter((curTask) => curTask.content !== value);
     setTask(updatedTask);
   };
 
@@ -32,16 +41,16 @@ function Todo() {
     setTask([]);
   };
 
-  const handleCheckTodo = (content) =>{
-    const updatedTask = task.map((curTask) =>{
-      if (curTask.content === content ) {
-        return {...curTask, checked: !curTask.checked}
-      }else{
-        return curTask ;
+  const handleCheckTodo = (content) => {
+    const updatedTask = task.map((curTask) => {
+      if (curTask.content === content) {
+        return { ...curTask, checked: !curTask.checked };
+      } else {
+        return curTask;
       }
-    }) ; 
-    setTask(updatedTask)
-   } 
+    });
+    setTask(updatedTask);
+  };
 
   return (
     <section className="todo-container">
@@ -60,7 +69,7 @@ function Todo() {
               <TodoList
                 key={curTask.id}
                 data={curTask.content}
-                checked = {curTask.checked}
+                checked={curTask.checked}
                 onhandleDeleteTodo={handleDeleteTodo}
                 onhandleCheckTodo={handleCheckTodo}
               />

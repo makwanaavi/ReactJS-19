@@ -1,16 +1,16 @@
 import { useState } from "react";
 
 function TodoForm({ onAddTodo }) {
-  const [InputValue, setInputValue] = useState({});
+  const [InputValue, setInputValue] = useState({}); 
 
   const handleInput = (value) => {
-    setInputValue({ id: value, content: value, checked: false });
+    setInputValue({ id: value, content : value ,  checked : false });
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     onAddTodo(InputValue);
-    setInputValue({ id: "", content: "", checked: false });
+    setInputValue({id : "", content : "", checked : false});
   };
 
   return (
