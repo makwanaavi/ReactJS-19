@@ -1,9 +1,9 @@
 import './components/EV.css'
-import Todo from './project/Todo/Todo';
+import { ShortCirCuit } from './components/hooks/ShortCircuit';
 
 export const App = () => {
   
   return (
-    <Todo/>
+    <ShortCirCuit/>
   );
 };
