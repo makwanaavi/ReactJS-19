@@ -1,10 +1,11 @@
 // import "./components/EV.css";
-import { ReactUseEffect } from "./components/hooks/UseEffect";
+
+import { EffectChallenge } from "./components/hooks/UseEffect/EffectChallenge";
 
 export const App = () => {
   return (
     <>
-      <ReactUseEffect/>
+      <EffectChallenge />
     </>
   );
 };
