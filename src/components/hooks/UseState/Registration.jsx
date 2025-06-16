@@ -1,3 +1,13 @@
+//* Registration Form Using Multiple State Variables
+
+//todo  Tasks:
+
+//? Set up a functional component in React.
+//? Create five separate state variables (firstName, lastName, email, password, phoneNumber).
+//? Create input fields for each piece of information.
+//? Implement onChange handlers to update state variables.
+//? Discuss the benefits and drawbacks of this approach.
+
 import "./index.css";
 import { useState } from "react";
 
@@ -45,13 +55,12 @@ export const RegistrationForm = () => {
     };
 
     console.log(formData);
-    // localStorage.setItem("formData", JSON.stringify(formData));
   };
 
   return (
     <>
       <form onSubmit={handleFormSubmit}>
-        <div className="container" style={{width:"500px"}}>
+        <div className="container">
           <h1>Sign Up</h1>
           <p>Please fill in this form to create an account.</p>
 
