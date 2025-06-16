@@ -1,11 +1,11 @@
-// import "./components/EV.css";
 
-import { EffectChallenge } from "./components/hooks/UseEffect/EffectChallenge";
+import HowNotFecthApi from "./components/hooks/UseEffect/HowNotFecthApi";
+
 
 export const App = () => {
   return (
     <>
-      <EffectChallenge />
+      <HowNotFecthApi />
     </>
   );
 };
