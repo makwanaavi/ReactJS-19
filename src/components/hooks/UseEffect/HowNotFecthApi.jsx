@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 function HowNotFetchApi() {
   const [apidata, setApiData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -13,7 +14,6 @@ function HowNotFetchApi() {
       const res = await fetch(API_URL);
       const data = await res.json();
 
-      // Get detailed data for each Pokémon
       const detailedData = await Promise.all(
         data.results.map(async (pokemon) => {
           const res = await fetch(pokemon.url);
@@ -34,27 +34,30 @@ function HowNotFetchApi() {
     fetchPokemon();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
-  if (error) {
-    return (
-      <div>
-        <h1>Error: {error}</h1>
-      </div>
-    );
-  }
+  const filteredData = apidata.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <section className="container">
       <header>
-        <h1 className="text-3xl">Let's Catch Pokémon</h1>
-        <h2 className="text-center mt-12"><input type="text" placeholder="Search..." /></h2>
+        <h1 className="text-3xl text-center mb-6">Let's Catch Pokémon</h1>
+        <div className="flex justify-center">
+          <input
+            type="text"
+            placeholder="Search Pokémon..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="px-4 py-2 border rounded w-full max-w-md"
+          />
+        </div>
       </header>
 
-      <ul className="card-demo grid grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-4">
-        {apidata.map((item) => (
+      <ul className="card-demo grid grid-cols-3 md:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
+        {filteredData.map((item) => (
           <li className="pokemon-card m-10 p-10" key={item.id}>
             <figure>
               <img
