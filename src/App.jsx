@@ -1,10 +1,10 @@
 import "./components/EV.css";
-import { RegistrationForm } from "./components/hooks/UseState/Registration";
+import { ContactForm } from "./components/hooks/UseState/ContactForm";
 
 export const App = () => {
   return (
     <>
-      <RegistrationForm/>
+      <ContactForm/>
     </>
   );
 };

@@ -1,57 +1,31 @@
 import "./index.css";
 import { useState } from "react";
 
-export const RegistrationForm = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+export const RegistrationFormReact = () => {
+  const [user, setUser] = useState(() => ({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+  }));
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
-    switch (name) {
-      case "firstName":
-        setFirstName(value);
-        break;
-
-      case "lastName":
-        setLastName(value);
-        break;
-
-      case "email":
-        setEmail(value);
-        break;
-
-      case "password":
-        setPassword(value);
-        break;
-
-      case "phone":
-        setPhoneNumber(value);
-        break;
-    }
-  };
+    setUser((prev)=>({...prev, [name] : value}))
+  }
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    const formData = {
-      firstName,
-      lastName,
-      email,
-      password,
-      phoneNumber,
-    };
 
-    console.log(formData);
+    console.log(user);
     // localStorage.setItem("formData", JSON.stringify(formData));
   };
 
   return (
     <>
       <form onSubmit={handleFormSubmit}>
-        <div className="container" style={{width:"500px"}}>
+        <div className="container" style={{ width: "500px" }}>
           <h1>Sign Up</h1>
           <p>Please fill in this form to create an account.</p>
 
@@ -63,7 +37,7 @@ export const RegistrationForm = () => {
             name="firstName"
             placeholder="Enter firstName"
             required
-            value={firstName}
+            value={user.firstName}
             onChange={handleInputChange}
           />
 
@@ -75,7 +49,7 @@ export const RegistrationForm = () => {
             name="lastName"
             placeholder="Enter lastName"
             required
-            value={lastName}
+            value={user.lastName}
             onChange={handleInputChange}
           />
 
@@ -87,7 +61,7 @@ export const RegistrationForm = () => {
             placeholder="Enter Email"
             name="email"
             required
-            value={email}
+            value={user.email}
             onChange={handleInputChange}
           />
 
@@ -99,7 +73,7 @@ export const RegistrationForm = () => {
             placeholder="Enter Password"
             name="password"
             required
-            value={password}
+            value={user.password}
             onChange={handleInputChange}
           />
 
@@ -109,10 +83,10 @@ export const RegistrationForm = () => {
 
           <input
             type="phone"
-            name="phone"
+            name="phoneNumber"
             placeholder="9876543211"
             required
-            value={phoneNumber}
+            value={user.phoneNumber}
             onChange={handleInputChange}
           />
 
@@ -138,10 +112,10 @@ export const RegistrationForm = () => {
         <p>
           Hello, my name is
           <span>
-            {firstName} {lastName}
+            {user.firstName} {user.lastName}
           </span>
-          . My email address is <span>{email}</span> and my phone number is
-          <span>{phoneNumber}</span>.
+          . My email address is <span>{user.email}</span> and my phone number is
+          <span>{user.phoneNumber}</span>.
         </p>
       </section>
     </>
