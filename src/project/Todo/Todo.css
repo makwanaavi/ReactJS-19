@@ -10,7 +10,7 @@
   flex-direction: column;
   min-height: 100vh;
   padding-top: 3%;
-  background-image: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  background-image: linear-gradient(120deg, #2193b0, #6dd5ed);
   color: white;
   transition: 0.3s linear;
   overflow: hidden;
@@ -34,6 +34,15 @@
   width: 100%;
 }
 
+.header h1 {
+  font-size: 5rem;
+  background: linear-gradient(to right, #ffffff, #eeeeee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 section h1 {
   color: #fff;
   font-size: 4.8rem;
@@ -44,6 +53,14 @@ section h1 {
 .date-time {
   font-size: 2.4rem;
   text-align: center;
+}
+
+.date-time h2 {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 form {
@@ -68,6 +85,8 @@ form input {
   background-color: rgba(255, 255, 255, 0.9);
   color: #333;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 form input:hover {
@@ -96,7 +115,7 @@ form button {
   font-size: 1.2rem;
   border-radius: 0 8px 8px 0;
   min-width: 120px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -123,7 +142,10 @@ form button {
   color: #333;
   border-radius: 8px;
   transition: all 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-left: 5px solid #4caf50;
+  animation: slideIn 0.3s ease-out;
   min-width: 35rem;
   max-width: 40rem;
   padding: 1.2rem 2rem;
@@ -131,6 +153,17 @@ form button {
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .todo-item:hover {
@@ -163,20 +196,22 @@ li span {
 
 .check-btn:hover,
 .delete-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) rotate(360deg);
 }
 
 .check-btn {
-  background-color: #4CAF50;
+  background: linear-gradient(45deg, #4caf50, #45a049);
 }
 
 .delete-btn {
-  background-color: #f44336;
+  background: linear-gradient(45deg, #f44336, #d32f2f);
 }
 
 .checkList {
   text-decoration: line-through;
-  opacity: 0.7;
+  opacity: 0.6;
+  color: #666;
+  transition: all 0.3s ease;
 }
 
 .notCheckList {
@@ -184,19 +219,36 @@ li span {
 }
 
 .clear-btn {
-  background-color: #f44336;
+  background: linear-gradient(45deg, #f44336, #d32f2f);
   font-size: 1.2rem;
   padding: 0.8rem 1.8rem;
-  border-radius: 8px;
+  border-radius: 25px;
   margin-top: 2rem;
   color: white;
   font-weight: bold;
+  transform-origin: center;
+  transition: all 0.3s ease;
 }
 
 .clear-btn:hover {
-  background-color: #d32f2f;
-  transform: translateY(-2px);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
+
+@media (max-width: 768px) {
+  .todo-item {
+    min-width: 90%;
+  }
+
+  .header h1 {
+    font-size: 3.5rem;
+  }
+
+  .date-time h2 {
+    font-size: 1.8rem;
+  }
+}
+
 /* 
 .header,
 .form,

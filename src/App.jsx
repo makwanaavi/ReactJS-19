@@ -1,9 +1,10 @@
-import './components/EV.css'
-import { Controlled } from './components/hooks/UseState/Controlled';
+import "./components/EV.css";
+import { ContactForm } from "./components/hooks/UseState/ContactForm";
 
 export const App = () => {
-  
   return (
-    <Controlled/>
+    <>
+      <ContactForm/>
+    </>
   );
 };
