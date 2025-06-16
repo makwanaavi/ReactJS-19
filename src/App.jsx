@@ -1,10 +1,11 @@
-import "./components/EV.css";
-import { ContactForm } from "./components/hooks/UseState/ContactForm";
+// import "./components/EV.css";
+
+import { EffectChallenge } from "./components/hooks/UseEffect/EffectChallenge";
 
 export const App = () => {
   return (
     <>
-      <ContactForm/>
+      <EffectChallenge />
     </>
   );
 };
