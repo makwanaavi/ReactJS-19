@@ -1,11 +1,11 @@
 
-import HowNotFecthApi from "./components/hooks/UseEffect/HowNotFecthApi";
+import { ForwardRef } from "./components/hooks/UseRefs/Forword";
 
 
 export const App = () => {
   return (
     <>
-      <HowNotFecthApi />
+      <ForwardRef />
     </>
   );
 };

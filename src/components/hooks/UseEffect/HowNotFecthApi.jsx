@@ -44,7 +44,7 @@ function HowNotFetchApi() {
   return (
     <section className="container">
       <header>
-        <h1 className="text-3xl text-center mb-6">Let's Catch Pokémon</h1>
+        <h1 className="text-3xl text-center mb-6"> {`Let's Catch Pokémon`}</h1>
         <div className="flex justify-center">
           <input
             type="text"
