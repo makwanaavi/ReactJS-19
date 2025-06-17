@@ -8,8 +8,8 @@ export const App = () => {
       <UserProvider>
         <Home />
         <br />
-        <About />
         <useBioContext/>
+        <About />
       </UserProvider>
       
     </>
