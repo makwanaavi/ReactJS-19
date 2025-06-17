@@ -9,7 +9,9 @@ export const App = () => {
         <Home />
         <br />
         <About />
+        <useBioContext/>
       </UserProvider>
+      
     </>
   );
 };

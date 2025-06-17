@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 export const UserContext = createContext();
 
@@ -11,3 +11,10 @@ export const UserProvider = ({ children }) => {
     <UserContext.Provider value={{Name1, Name2, Age}}>{children}</UserContext.Provider>
   );
 };
+
+
+export const useBioContext = () =>{
+    const context = useContext(UserContext)
+    console.log(context)
+    return context
+}
