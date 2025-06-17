@@ -1,11 +1,15 @@
-import { PropsDrilling } from "./components/PropsDrilling";
-
-
+import { UserProvider } from "./components/hooks/ContextApi";
+import { About } from "./components/hooks/ContextApi/About";
+import { Home } from "./components/hooks/ContextApi/Home";
 
 export const App = () => {
   return (
     <>
-      <PropsDrilling />
+      <UserProvider>
+        <Home />
+        <br />
+        <About />
+      </UserProvider>
     </>
   );
 };
