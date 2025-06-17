@@ -1,11 +1,11 @@
 
-import { ForwardRef } from "./components/hooks/UseRefs/Forword";
+import { UseID } from "./components/hooks/UseID";
 
 
 export const App = () => {
   return (
     <>
-      <ForwardRef />
+      <UseID />
     </>
   );
 };
