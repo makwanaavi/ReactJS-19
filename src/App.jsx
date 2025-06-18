@@ -1,29 +1,26 @@
-// import { UserProvider } from "./components/hooks/ContextApi";
-// import { About } from "./components/hooks/ContextApi/About";
-// import { Home } from "./components/hooks/ContextApi/Home";
-
-// import {
-//   ThemeProvider,
-//   DarkLightMode,
-// } from "./components/hooks/ContextApi/DarkLightMode";
-
-import { ReactMemo } from "./components/hooks/Memo/ReactMemo";
-import Counter from "./components/hooks/useCallback";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom"; // Fix imports
+import { Home } from "./pages/Home";
+import { About } from "./pages/About";
+import { Contact } from "./pages/Contact";
+import { Movie } from "./pages/Movie";
 
 export const App = () => {
   return (
-    <>
-      {/* <UserProvider>
-        <Home />
-        <br />
-        <useBioContext/>
-        <About />
-      </UserProvider> */}
-      {/* <ThemeProvider>
-        <DarkLightMode />
-      </ThemeProvider> */}
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Home</Link> 
+         <Link to="/about">About</Link>
+        <Link to="/contact">Contact</Link>  
+        <Link to="/movie">Movie</Link>
 
-      <Counter/>
-    </>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/movie" element={<Movie />} /> {/* Fix route path */}
+      </Routes>
+    </BrowserRouter>
   );
 };
