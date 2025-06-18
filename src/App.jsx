@@ -8,6 +8,7 @@
 // } from "./components/hooks/ContextApi/DarkLightMode";
 
 import { ReactMemo } from "./components/hooks/Memo/ReactMemo";
+import Counter from "./components/hooks/useCallback";
 
 export const App = () => {
   return (
@@ -22,7 +23,7 @@ export const App = () => {
         <DarkLightMode />
       </ThemeProvider> */}
 
-      <ReactMemo/>
+      <Counter/>
     </>
   );
 };
