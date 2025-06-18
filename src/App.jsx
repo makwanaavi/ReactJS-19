@@ -7,7 +7,7 @@
 //   DarkLightMode,
 // } from "./components/hooks/ContextApi/DarkLightMode";
 
-import { Usereducre } from "./components/hooks/useReducer";
+import { ReactMemo } from "./components/hooks/Memo/ReactMemo";
 
 export const App = () => {
   return (
@@ -22,7 +22,7 @@ export const App = () => {
         <DarkLightMode />
       </ThemeProvider> */}
 
-      <Usereducre/>
+      <ReactMemo/>
     </>
   );
 };
