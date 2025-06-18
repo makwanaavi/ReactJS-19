@@ -2,10 +2,12 @@
 // import { About } from "./components/hooks/ContextApi/About";
 // import { Home } from "./components/hooks/ContextApi/Home";
 
-import {
-  ThemeProvider,
-  DarkLightMode,
-} from "./components/hooks/ContextApi/DarkLightMode";
+// import {
+//   ThemeProvider,
+//   DarkLightMode,
+// } from "./components/hooks/ContextApi/DarkLightMode";
+
+import { Usereducre } from "./components/hooks/useReducer";
 
 export const App = () => {
   return (
@@ -16,9 +18,11 @@ export const App = () => {
         <useBioContext/>
         <About />
       </UserProvider> */}
-      <ThemeProvider>
+      {/* <ThemeProvider>
         <DarkLightMode />
-      </ThemeProvider>
+      </ThemeProvider> */}
+
+      <Usereducre/>
     </>
   );
 };
