@@ -12,7 +12,6 @@ import {
 function Todo() {
   const [task, setTask] = useState(() => getLocalStorageTodoData());
 
-  // Add useEffect for localStorage updates
   useEffect(() => {
     setLocalStorageTodoData(task);
   }, [task]);
@@ -21,8 +20,6 @@ function Todo() {
     const { id, content, checked } = InputValue;
 
     if (!content) return;
-
-    // if (task.includes(InputValue)) return;
 
     const ifTodoContentMatch = task.find(
       (curTask) => curTask.content === content
