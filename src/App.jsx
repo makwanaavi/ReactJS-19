@@ -1,9 +1,9 @@
-import { BrowserRouter, Routes, Route, Link, NavLink } from "react-router-dom"; // Fix imports
+import { BrowserRouter, Routes, Route,  NavLink } from "react-router-dom"; // Fix imports
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { Movie } from "./pages/Movie";
-import NotFound from "./pages/NotFound";
+import ErrorPage from "./pages/NotFoundPage";
 
 export const App = () => {
   const navLinkStyles = ({ isActive }) =>
@@ -31,7 +31,7 @@ export const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/movie" element={<Movie />} /> 
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );
