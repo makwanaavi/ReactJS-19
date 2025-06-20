@@ -1,12 +1,16 @@
-import { NavBar } from "./NavBar";
 
-// Main App component
-export default function App() {
+import './App.css'
+import Hero from './components/Hero'
+import Navbar from './components/Navbar'
+
+function App() {
+
   return (
-    <div>
-     
-    </div>
-  );
+    <>
+      <Navbar/>
+      <Hero/>
+    </>
+  )
 }
 
-// NavBar component
+export default App

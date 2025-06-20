@@ -1,68 +1,91 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
+/* // Banners */
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.hero-section {
+  height: 60vh;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+.hero-section .container {
+  background-color: #fff;
+  padding: 3.2rem;
 }
 
-body {
-  margin: 0;
+.banner-column {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+  gap: 6.4rem;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+&-image {
+  display: block;
+  max-width: 20rem;
+  height: auto;
+  object-fit: cover;
+  justify-self: center;
+}
+
+&-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 1.5rem;
+}
+
+.paragraph {
+  margin: 3.2rem 0;
+}
+
+.heading-xl {
+  font-family: inherit;
+  font-size: clamp(2.648rem, 6vw, 4.241rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -1px;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+  display: inline-block;
   font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  /* font-size: 0.95rem; */
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 0.6rem 2.4rem;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  user-select: none;
+  outline: none;
+  border: none;
+  border-radius: 0.25rem;
+  text-transform: unset;
+  transition: all 0.3s ease-in-out;
+  background: #000;
+  color: #fff;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.banner-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .banner-image {
+  width: 100%;
+}
+
+@media screen and (max-width: 990px) {
+  .banner-column {
+    flex-direction: column;
   }
-  a:hover {
-    color: #747bff;
+
+  .banner-inner {
+    order: 1;
   }
-  button {
-    background-color: #f9f9f9;
+
+  .container .banner-image {
+    width: 80%;
+    order: 0;
   }
 }
