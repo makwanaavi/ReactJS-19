@@ -8,6 +8,7 @@ function App() {
   return (
     <>
       <Navbar/>
+      <h2>Hello </h2>
       <Hero/>
     </>
   )
