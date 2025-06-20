@@ -42,9 +42,23 @@ export const Form = ({ data, setData, updateApiData, setupdateApiData, isEditing
   };
 
   const addPostData = async () => {
+    // Prevent empty title or body
+    if (!addData.title.trim() || !addData.body.trim()) return;
+
+    // Prevent duplicate (same title and body)
+    const isDuplicate = data.some(
+      post =>
+        post.title.trim().toLowerCase() === addData.title.trim().toLowerCase() &&
+        post.body.trim().toLowerCase() === addData.body.trim().toLowerCase()
+    );
+    if (isDuplicate) return;
+
     const response = await postData(addData);
     if (response.status === 201) {
-      setData([...data, response.data]);
+      // Generate a unique ID for the new post
+      const maxId = data.length > 0 ? Math.max(...data.map(post => post.id)) : 0;
+      const newPost = { ...response.data, id: maxId + 1 };
+      setData([...data, newPost]);
       setaddData({ title: "", body: "" });
     }
   };
@@ -83,4 +97,3 @@ export const Form = ({ data, setData, updateApiData, setupdateApiData, isEditing
   );
 }
 
-// export default Form;

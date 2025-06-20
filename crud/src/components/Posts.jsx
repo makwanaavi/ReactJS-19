@@ -10,12 +10,16 @@ const Posts = () => {
   const getPostData = async () => {
     const res = await getPost();
     setPost(res.data);
-    console.log(res.data)
+    console.log(res.data);
   };
 
   useEffect(() => {
     getPostData();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("LocalStorage", JSON.stringify(Post));
+  }, [Post]);
 
   const handleDeletePost = async (id) => {
     try {
