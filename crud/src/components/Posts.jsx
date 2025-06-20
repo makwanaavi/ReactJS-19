@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { deletPost, getPost } from "../api/PostApi";
+import { deletPost, getPost, updatePost } from "../api/PostApi";
 import { Form } from "./Form";
 
 const Posts = () => {
   const [Post, setPost] = useState([]);
+  const [updateApiData, setupdateApiData] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
+
   const getPostData = async () => {
     const res = await getPost();
     setPost(res.data);
@@ -24,10 +27,43 @@ const Posts = () => {
       console.log(error);
     }
   };
+
+  // Called when clicking EDIT
+  const handlePostData = (curElem) => {
+    setupdateApiData(curElem);
+    setIsEditing(true);
+  };
+
+  // Handle update after editing
+  const handleUpdatePost = async (updatedData) => {
+    try {
+      const res = await updatePost(updatedData.id, updatedData);
+      if (res.status === 200) {
+        setPost((prevPosts) =>
+          prevPosts.map((post) =>
+            post.id === updatedData.id ? { ...post, ...updatedData } : post
+          )
+        );
+        setupdateApiData({});
+        setIsEditing(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <section className="py-8 bg-[#1a222d]">
-        <Form data={Post} setData={setPost} />
+        <Form
+          data={Post}
+          setData={setPost}
+          updateApiData={updateApiData}
+          setupdateApiData={setupdateApiData}
+          isEditing={isEditing}
+          handleUpdatePost={handleUpdatePost}
+          setIsEditing={setIsEditing}
+        />
       </section>
       <section className="py-10 px-4 bg-[#1a222d] min-h-screen">
         <div className="max-w-6xl mx-auto">
@@ -52,7 +88,10 @@ const Posts = () => {
                     News: <span className="font-normal">{body}</span>
                   </p>
                   <div className="flex gap-4 mt-auto">
-                    <button className="flex-1 px-4 py-2 bg-[#20c997] text-white rounded font-semibold hover:bg-[#17a589] transition-colors duration-150">
+                    <button
+                      onClick={() => handlePostData(curElem)}
+                      className="flex-1 px-4 py-2 bg-[#20c997] text-white rounded font-semibold hover:bg-[#17a589] transition-colors duration-150"
+                    >
                       EDIT
                     </button>
                     <button
